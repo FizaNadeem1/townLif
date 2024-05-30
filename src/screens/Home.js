@@ -50,8 +50,12 @@ const Home = ({ navigation }) => {
     { id: 4, title: 'Converse' },
   ]
   const [selectedCategory, setSelectedCategory] = useState('')
-
-  return (
+  const ListFooterComponent = () => {
+    return (
+      <View style={styles.footerHeight}></View>
+    )
+  }
+    return (
     <View
       style={styles.container}>
       <CustomStatusbar />
@@ -92,9 +96,10 @@ const Home = ({ navigation }) => {
       <FlatList
         numColumns={2}
         data={allProducts}
-        contentContainerStyle={{ flex: 1, width: '100%', justifyContent: 'space-between', marginTop: hp(2),gap:hp(1) }}
-        columnWrapperStyle={{gap:wp(3)}}
+        contentContainerStyle={{  width: '100%', justifyContent: 'space-between', marginTop: hp(2), gap: hp(1) }}
+        columnWrapperStyle={{ gap: wp(3) }}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={ListFooterComponent}
         renderItem={({ item }) => (
           <View style={styles.product_item}>
             <TouchableOpacity
@@ -206,19 +211,25 @@ const styles = StyleSheet.create({
     borderRadius: wp('3'),
     backgroundColor: '#d3d3d3',
     opacity: 0.7,
-    objectFit:'contain'
+    objectFit: 'contain'
   },
   product_title: {
     fontFamily: FontStyle.regularFont,
     color: AppColors.black,
     fontSize: wp('3.5'),
-    marginTop:hp(1)
+    marginTop: hp(1),
+    marginHorizontal: wp(3)
 
   },
   product_price: {
     fontFamily: FontStyle.boldFont,
     color: AppColors.black,
     fontSize: wp('3.5'),
-    lineHeight:16
+    lineHeight: 16,
+    marginHorizontal: wp(3)
+
+  },
+  footerHeight:{
+    height:hp(7)
   }
 })
